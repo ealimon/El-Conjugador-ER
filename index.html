@@ -14,10 +14,10 @@
         /* Custom styles for the game feel */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         :root {
-            --primary-color: #06B6D4; /* Cyan-500 (Primary/Accent) */
+            --primary-color: #EF4444; /* Red-500 (Primary/Accent) */
             --secondary-color: #10B981; /* Emerald-500 (Success) */
             --warning-color: #FBBF24; /* Amber-400 (Try Again) */
-            --bg-color: #E0F7FA; /* Cyan-50 */
+            --bg-color: #FEE2E2; /* Red-100 */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -74,7 +74,7 @@
             color: white;
         }
         #helpButton {
-            background-color: #EF4444; /* Red-500 */
+            background-color: #FBBF24; /* Amber-400 */
             color: white;
             box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
             border-bottom: 3px solid rgba(0, 0, 0, 0.2);
@@ -115,10 +115,9 @@
             <label for="difficultySelect" class="text-gray-700 font-semibold mr-3 text-sm md:text-base">Level:</label>
             <select 
                 id="difficultySelect" 
-                class="p-2 border border-gray-300 rounded-lg text-sm md:text-base bg-gray-50 focus:ring-cyan-500 focus:border-cyan-500 outline-none" 
+                class="p-2 border border-gray-300 rounded-lg text-sm md:text-base bg-gray-50 focus:ring-red-500 focus:border-red-500 outline-none" 
                 onchange="setLevel(this.value)"
             >
-                <!-- Default to Beginner -->
                 <option value="beginner" selected>Beginner (Singular)</option>
                 <option value="intermediate">Intermediate (Plural)</option>
                 <option value="advanced">Advanced (All)</option>
@@ -127,9 +126,8 @@
 
         <!-- Score, Streak, & Round Display -->
         <div id="statsDisplay" class="flex justify-between items-center mb-6 text-xl font-semibold">
-            <span class="text-gray-700">Score: <span id="scoreDisplay" class="text-2xl text-cyan-500 transition duration-100">0</span></span>
+            <span class="text-gray-700">Score: <span id="scoreDisplay" class="text-2xl text-red-500 transition duration-100">0</span></span>
             <span class="streak-display">Streak: <span id="streakDisplay" class="text-2xl transition duration-100">0</span></span>
-            <!-- 'Rank' replaced with 'Round' -->
             <span class="text-gray-700">Round: <span id="roundDisplay" class="xl text-blue-700 font-extrabold transition duration-100">1 / 25</span></span>
         </div>
         
@@ -147,7 +145,7 @@
                 type="text"
                 id="answerInput"
                 placeholder="Type the conjugation here (e.g., como)"
-                class="w-full p-3 text-lg border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:ring-cyan-500 outline-none transition duration-150"
+                class="w-full p-3 text-lg border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500 outline-none transition duration-150"
                 autocapitalize="off"
                 autocomplete="off"
             >
@@ -187,11 +185,11 @@
             <p class="text-center text-xl text-gray-600 mb-6">Your 25-round challenge results:</p>
             <ul class="space-y-3 text-lg">
                 <!-- Rounds Completed (Always 25 if the game is finished) -->
-                <li class="flex justify-between items-center p-3 bg-white rounded-lg border-l-4 border-cyan-500 shadow-sm">
+                <li class="flex justify-between items-center p-3 bg-white rounded-lg border-l-4 border-red-500 shadow-sm">
                     <span class="font-semibold text-gray-700">Rounds Completed</span>
-                    <span id="finalScore" class="font-extrabold text-2xl text-cyan-500">0 / 25</span>
+                    <span id="finalScore" class="font-extrabold text-2xl text-red-500">0 / 25</span>
                 </li>
-                <!-- NEW STAT: Rounds Perfect (First Try) -->
+                <!-- STAT: Rounds Perfect (First Try) -->
                 <li class="flex justify-between items-center p-3 bg-white rounded-lg border-l-4 border-emerald-500 shadow-sm">
                     <span class="font-semibold text-gray-700">Rounds Perfect (First Try)</span>
                     <span id="finalPerfectRounds" class="font-extrabold text-2xl text-emerald-500">0</span>
@@ -208,9 +206,9 @@
                 </li>
             </ul>
 
-            <!-- NEW: Error Log Container -->
+            <!-- Error Log Container -->
             <div id="errorLogContainer" class="mt-8 pt-6 border-t border-gray-300">
-                <h3 class="text-xl font-bold text-gray-800 mb-3 border-b-2 border-cyan-500 pb-2 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-3 border-b-2 border-red-500 pb-2 flex justify-between items-center">
                     Verbs That Caused Errors 
                     <span class="text-sm font-normal text-gray-600">Infinitive (Pronoun) → Correct</span>
                 </h3>
@@ -243,29 +241,31 @@
         // --- Game Data ---
         const MAX_ROUNDS = 25; // Game stops after this many rounds
 
-        // 20 Most Common Regular -ER Verbs for Foundation Practice
+        // 20 Regular -ER Verbs for Foundation Practice
         const ER_VERBS = [
-            { infinitive: 'comer', meaning: 'to eat', type: 'regular' },
-            { infinitive: 'beber', meaning: 'to drink', type: 'regular' },
-            { infinitive: 'vender', meaning: 'to sell', type: 'regular' },
             { infinitive: 'aprender', meaning: 'to learn', type: 'regular' },
+            { infinitive: 'beber', meaning: 'to drink', type: 'regular' },
+            { infinitive: 'comer', meaning: 'to eat', type: 'regular' },
             { infinitive: 'correr', meaning: 'to run', type: 'regular' },
-            { infinitive: 'leer', meaning: 'to read', type: 'regular' },
-            { infinitive: 'meter', meaning: 'to put/place inside', type: 'regular' },
+            { infinitive: 'deber', meaning: 'to owe / should', type: 'regular' },
+            { infinitive: 'esconder', meaning: 'to hide', type: 'regular' },
+            { infinitive: 'meter', meaning: 'to put in / insert', type: 'regular' },
+            { infinitive: 'prender', meaning: 'to turn on / to catch', type: 'regular' },
+            { infinitive: 'prometer', meaning: 'to promise', type: 'regular' },
             { infinitive: 'responder', meaning: 'to respond', type: 'regular' },
             { infinitive: 'romper', meaning: 'to break', type: 'regular' },
-            { infinitive: 'esconder', meaning: 'to hide', type: 'regular' },
-            { infinitive: 'deber', meaning: 'ought to/should', type: 'regular' },
+            { infinitive: 'vender', meaning: 'to sell', type: 'regular' },
+            { infinitive: 'barrer', meaning: 'to sweep', type: 'regular' },
+            { infinitive: 'comprender', meaning: 'to comprehend', type: 'regular' },
+            { infinitive: 'ofender', meaning: 'to offend', type: 'regular' },
+            { infinitive: 'suspender', meaning: 'to suspend / fail', type: 'regular' },
+            // Final 4 common and regular verbs:
             { infinitive: 'creer', meaning: 'to believe', type: 'regular' },
-            { infinitive: 'depender', meaning: 'to depend', type: 'regular' },
-            { infinitive: 'poseer', meaning: 'to possess', type: 'regular' },
-            { infinitive: 'prometer', meaning: 'to promise', type: 'regular' },
-            { infinitive: 'tejer', meaning: 'to knit', type: 'regular' },
-            { infinitive: 'sorprender', meaning: 'to surprise', type: 'regular' },
+            { infinitive: 'tejer', meaning: 'to knit / to weave', type: 'regular' }, // Replaced Poseer
             { infinitive: 'toser', meaning: 'to cough', type: 'regular' },
-            { infinitive: 'coser', meaning: 'to sew', type: 'regular' },
-            { infinitive: 'ceder', meaning: 'to concede/yield', type: 'regular' },
+            { infinitive: 'temer', meaning: 'to fear', type: 'regular' },
         ];
+
 
         // Pronouns and their corresponding -ER endings
         const PRONOUNS = {
@@ -274,9 +274,9 @@
             'Él': { ending: 'e', isBoot: true, index: 2 },
             'Ella': { ending: 'e', isBoot: true, index: 3 },
             'Usted': { ending: 'e', isBoot: true, index: 4 },
-            'Nosotros': { ending: 'emos', isBoot: false, index: 5 },
-            'Nosotras': { ending: 'emos', isBoot: false, index: 6 },
-            'Vosotros': { ending: 'éis', isBoot: false, index: 7 }, // Accented form
+            'Nosotros': { ending: 'emos', isBoot: false, index: 5 }, // Note the 'e'
+            'Nosotras': { ending: 'emos', isBoot: false, index: 6 }, // Note the 'e'
+            'Vosotros': { ending: 'éis', isBoot: false, index: 7 }, // Note the 'é'
             'Vosotras': { ending: 'éis', isBoot: false, index: 8 },
             'Ellos': { ending: 'en', isBoot: true, index: 9 },
             'Ellas': { ending: 'en', isBoot: true, index: 10 },
@@ -311,9 +311,9 @@
 
             if (isCorrect) {
                 const now = Tone.now();
-                synth.triggerAttackRelease("C6", "8n", now); 
-                synth.triggerAttackRelease("E6", "8n", now + 0.01); 
-                synth.triggerAttackRelease("G6", "8n", now + 0.02); 
+                synth.triggerAttackRelease("C5", "8n", now); 
+                synth.triggerAttackRelease("E5", "8n", now + 0.01); 
+                synth.triggerAttackRelease("G5", "8n", now + 0.02); 
             } else {
                 synth.triggerAttackRelease("C4", "16n");
             }
@@ -341,7 +341,7 @@
         const $pronoun = document.getElementById('pronounDisplay');
         const $input = document.getElementById('answerInput');
         const $checkButton = document.getElementById('checkButton');
-        const $helpButton = document.getElementById('helpButton'); // NEW
+        const $helpButton = document.getElementById('helpButton');
         const $nextButton = document.getElementById('nextButton');
         const $scoreDisplay = document.getElementById('scoreDisplay');
         const $streakDisplay = document.getElementById('streakDisplay');
@@ -379,6 +379,7 @@
         }
 
         function normalizeString(str) {
+            // This function handles accents (like on the vosotros form 'éis')
             return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
@@ -398,11 +399,11 @@
         }
 
         function showFeedback(message, colorClass) {
-            $feedback.classList.remove('bg-secondary-color', 'bg-primary-color', 'bg-gray-400', 'bg-yellow-600', 'bg-red-500', 'bg-emerald-500', 'bg-red-700');
+            $feedback.classList.remove('bg-secondary-color', 'bg-primary-color', 'bg-gray-400', 'bg-yellow-600', 'bg-red-500', 'bg-yellow-700');
             $feedback.classList.add(colorClass, 'text-white', 'feedback-visible');
             $feedback.innerHTML = message.replace(/\*\*(.*?)\*\*/g, '<span class="font-extrabold">$1</span>');
 
-            if (colorClass !== 'bg-secondary-color' && colorClass !== 'bg-red-700') {
+            if (colorClass !== 'bg-secondary-color' && colorClass !== 'bg-yellow-700') {
                 setTimeout(() => {
                     $feedback.classList.remove('feedback-visible');
                     $feedback.textContent = '';
@@ -510,11 +511,11 @@
             $input.disabled = false;
             $checkButton.disabled = false;
             $helpButton.disabled = false; // Enable help button
-            $checkButton.classList.remove('hidden');
-            $helpButton.classList.remove('hidden');
+            $checkButton.classList.add('hidden');
+            $helpButton.classList.add('hidden');
             $nextButton.classList.add('hidden');
             $nextButton.textContent = 'Next Verb';
-            $feedback.classList.remove('feedback-visible', 'bg-secondary-color', 'bg-primary-color', 'bg-yellow-600', 'bg-red-500', 'bg-red-700');
+            $feedback.classList.remove('feedback-visible', 'bg-secondary-color', 'bg-primary-color', 'bg-yellow-600', 'bg-red-500', 'bg-yellow-700');
             $feedback.textContent = '';
             
             // Update Round Display (e.g., "1 / 25")
@@ -522,8 +523,11 @@
 
             $streakDisplay.textContent = currentStreak;
             $questionBox.classList.remove('correct-bg');
+            $checkButton.classList.remove('hidden');
+            $helpButton.classList.remove('hidden');
 
-            currentVerbObj = getRandomElement(ER_VERBS); // Use ER_VERBS
+
+            currentVerbObj = getRandomElement(ER_VERBS);
             const activePronounList = PRONOUN_GROUPS[currentLevel];
             currentPronoun = getRandomElement(activePronounList);
 
@@ -611,7 +615,7 @@
         }
 
         /**
-         * New function to reveal the answer. Skips scoring/streak.
+         * Function to reveal the answer. Skips scoring/streak.
          */
         function revealAnswer() {
             if (isAnswered) return;
@@ -622,7 +626,7 @@
             currentStreak = 0; 
             $streakDisplay.textContent = currentStreak;
 
-            showFeedback(`The correct answer is **${currentPronoun} ${correctAnswer}**. Let's review it and move on!`, 'bg-red-700'); 
+            showFeedback(`The correct answer is **${currentPronoun} ${correctAnswer}**. Let's review it and move on!`, 'bg-yellow-700'); 
             
             // Set the answer in the input field for visual feedback
             $input.value = correctAnswer;
