@@ -260,8 +260,8 @@
             { infinitive: 'ofender', meaning: 'to offend', type: 'regular' },
             { infinitive: 'suspender', meaning: 'to suspend / fail', type: 'regular' },
             // Final 4 common and regular verbs:
-            { infinitive: 'creer', meaning: 'to believe', type: 'regular' },
-            { infinitive: 'tejer', meaning: 'to knit / to weave', type: 'regular' }, // Replaced Poseer
+            { infinitive: 'coser', meaning: 'to sew', type: 'regular' }, // Replaced Creer
+            { infinitive: 'tejer', meaning: 'to knit / to weave', type: 'regular' }, 
             { infinitive: 'toser', meaning: 'to cough', type: 'regular' },
             { infinitive: 'temer', meaning: 'to fear', type: 'regular' },
         ];
@@ -511,8 +511,8 @@
             $input.disabled = false;
             $checkButton.disabled = false;
             $helpButton.disabled = false; // Enable help button
-            $checkButton.classList.add('hidden');
-            $helpButton.classList.add('hidden');
+            $checkButton.classList.remove('hidden');
+            $helpButton.classList.remove('hidden');
             $nextButton.classList.add('hidden');
             $nextButton.textContent = 'Next Verb';
             $feedback.classList.remove('feedback-visible', 'bg-secondary-color', 'bg-primary-color', 'bg-yellow-600', 'bg-red-500', 'bg-yellow-700');
@@ -523,8 +523,6 @@
 
             $streakDisplay.textContent = currentStreak;
             $questionBox.classList.remove('correct-bg');
-            $checkButton.classList.remove('hidden');
-            $helpButton.classList.remove('hidden');
 
 
             currentVerbObj = getRandomElement(ER_VERBS);
